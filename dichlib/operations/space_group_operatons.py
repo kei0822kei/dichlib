@@ -8,27 +8,52 @@ import numpy as np
 
 def get_Ww(W, w):
     """
-    get 4 x 4 matrix Ww from the operation
-    of rotation part W and translation part w
+    get hexagonal structure
 
-        Parameters
-        ----------
-        W : np.array
-            rotation part (3 x 3) of space group operation
-        w : np.array
-            translation part (3) of space group operation
+    Parameters
+    ----------
+    a : float
+        the length of unit vector a
+    c : float
+        the length of unit vector c
+    element : str
+        element
 
-        Returns
-        -------
-        Ww : np.array
-            concatted space group operaton (4 x 4)
+    Returns
+    -------
+    dict
+        return structure included 'lattice', 'positions' and 'elements'
 
-        Notes
-        -----
+    Notes
+    -----
 
-        Raises
-        ------
+    Raises
+    ------
+    ValueError
+        conditions which ValueError occurs
     """
+    # """
+    # get 4 x 4 matrix Ww from the operation
+    # of rotation part W and translation part w
+
+    #     Parameters
+    #     ----------
+    #     W : np.array
+    #         rotation part (3 x 3) of space group operation
+    #     w : np.array
+    #         translation part (3) of space group operation
+
+    #     Returns
+    #     -------
+    #     Ww : np.array
+    #         concatted space group operaton (4 x 4)
+
+    #     Notes
+    #     -----
+
+    #     Raises
+    #     ------
+    # """
     Ww = np.concatenate([W, w.reshape(3,1)], axis=1)
     Ww = np.concatenate([Ww, np.array([0,0,0,1]).reshape(1,4)], axis=0)
     return Ww
