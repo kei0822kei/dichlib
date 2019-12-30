@@ -197,20 +197,28 @@
 <dl class="function">
 <dt id="dichlib.operations.space_group_operatons.get_Ww">
 <code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_Ww</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_Ww"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_Ww" title="Permalink to this definition">¶</a></dt>
-<dd><p>get 4 x 4 matrix Ww from the operation
-of rotation part W and translation part w</p>
-<blockquote>
-<div><dl class="simple">
-<dt>W<span class="classifier">np.array</span></dt><dd><p>rotation part (3 x 3) of space group operation</p>
+<dd><p>get hexagonal structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>float</em>) – the length of unit vector a</p></li>
+<li><p><strong>c</strong> (<em>float</em>) – the length of unit vector c</p></li>
+<li><p><strong>element</strong> (<em>str</em>) – element</p></li>
+</ul>
 </dd>
-<dt>w<span class="classifier">np.array</span></dt><dd><p>translation part (3) of space group operation</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return structure included ‘lattice’, ‘positions’ and ‘elements’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>Ww<span class="classifier">np.array</span></dt><dd><p>concatted space group operaton (4 x 4)</p>
+<p class="rubric">Notes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – conditions which ValueError occurs</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="function">

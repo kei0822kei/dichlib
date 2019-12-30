@@ -160,27 +160,52 @@
 
 <div class="viewcode-block" id="get_Ww"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_Ww">[docs]</a><span class="k">def</span> <span class="nf">get_Ww</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    get 4 x 4 matrix Ww from the operation</span>
-<span class="sd">    of rotation part W and translation part w</span>
+<span class="sd">    get hexagonal structure</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        W : np.array</span>
-<span class="sd">            rotation part (3 x 3) of space group operation</span>
-<span class="sd">        w : np.array</span>
-<span class="sd">            translation part (3) of space group operation</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : float</span>
+<span class="sd">        the length of unit vector a</span>
+<span class="sd">    c : float</span>
+<span class="sd">        the length of unit vector c</span>
+<span class="sd">    element : str</span>
+<span class="sd">        element</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        Ww : np.array</span>
-<span class="sd">            concatted space group operaton (4 x 4)</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        return structure included &#39;lattice&#39;, &#39;positions&#39; and &#39;elements&#39;</span>
 
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
 
-<span class="sd">        Raises</span>
-<span class="sd">        ------</span>
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        conditions which ValueError occurs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># &quot;&quot;&quot;</span>
+    <span class="c1"># get 4 x 4 matrix Ww from the operation</span>
+    <span class="c1"># of rotation part W and translation part w</span>
+
+    <span class="c1">#     Parameters</span>
+    <span class="c1">#     ----------</span>
+    <span class="c1">#     W : np.array</span>
+    <span class="c1">#         rotation part (3 x 3) of space group operation</span>
+    <span class="c1">#     w : np.array</span>
+    <span class="c1">#         translation part (3) of space group operation</span>
+
+    <span class="c1">#     Returns</span>
+    <span class="c1">#     -------</span>
+    <span class="c1">#     Ww : np.array</span>
+    <span class="c1">#         concatted space group operaton (4 x 4)</span>
+
+    <span class="c1">#     Notes</span>
+    <span class="c1">#     -----</span>
+
+    <span class="c1">#     Raises</span>
+    <span class="c1">#     ------</span>
+    <span class="c1"># &quot;&quot;&quot;</span>
     <span class="n">Ww</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">Ww</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">Ww</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Ww</span></div>
