@@ -13,14 +13,14 @@ def get_Ww(W, w):
 
         Parameters
         ----------
-        W : array_like
+        W : numpy.array
             rotation part (3 x 3) of space group operation
-        w : array_like
+        w : numpy.array
             translation part (3) of space group operation
 
         Returns
         -------
-        Ww : array_like
+        Ww : numpy.array
             concatted space group operaton (4 x 4)
 
         Notes
