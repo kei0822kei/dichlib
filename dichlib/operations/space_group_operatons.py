@@ -40,9 +40,9 @@ def get_detailed_spg_operation(W, w):
 
         Parameters
         ----------
-        W : np.array
+        W : numpy.array
             rotation part (3 x 3) of space group operation
-        w : np.array
+        w : numpy.array
             translation part (3) of space group operation
 
         Returns

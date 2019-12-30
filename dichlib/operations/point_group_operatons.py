@@ -15,7 +15,7 @@ def get_all_pog_operations(coord_sys):
 
         Returns
         -------
-        pog_operations : dict
+        dict
             all point group operations
 
         Notes
