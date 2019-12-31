@@ -31,29 +31,30 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.viewcode',
+    'sphinx.ext.autodoc',    # read doc automatically
+    'sphinx.ext.mathjax',    # math support
+    'sphinx.ext.viewcode',   # go to class and def to search the docstring
+    # 'sphinxcontrib.napoleon',
     # 'numpydoc',
     # 'sphinx.ext.autosummary',
     # 'sphinx.ext.doctest',
-    'sphinx.ext.napoleon',
+    'sphinx.ext.napoleon',   # to read various kinds of style of docstring
     # 'sphinx.ext.inheritance_diagram',
-    'sphinxcontrib.seqdiag'
+    # 'sphinxcontrib.seqdiag'  # to use figure
 ]
 
 # Napoleon settings
-napoleon_google_docstring = False
-napoleon_numpy_docstring = True
-napoleon_include_init_with_doc = True
-napoleon_include_private_with_doc = False
-napoleon_include_special_with_doc = False
-napoleon_use_admonition_for_examples = False
-napoleon_use_admonition_for_notes = False
-napoleon_use_admonition_for_references = False
-napoleon_use_ivar = True
-napoleon_use_param = True
-napoleon_use_rtype = True
+napoleon_google_docstring = True
+# napoleon_numpy_docstring = True
+# napoleon_include_init_with_doc = True
+# napoleon_include_private_with_doc = False
+# napoleon_include_special_with_doc = False
+# napoleon_use_admonition_for_examples = False
+# napoleon_use_admonition_for_notes = False
+# napoleon_use_admonition_for_references = False
+# napoleon_use_ivar = True
+# napoleon_use_param = True
+# napoleon_use_rtype = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

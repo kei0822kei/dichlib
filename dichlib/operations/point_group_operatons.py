@@ -6,25 +6,30 @@ This file provides various kind of calculations about point group oprations.
 """
 import numpy as np
 
+
 def get_all_pog_operations(coord_sys):
     """
     get all point group operations specified coordinate system
 
-        Parameters
-        ----------
+    Args:
+        coord_sys (str): Put coordinate system of lattice, which must be
+          chosen from 'cubic', 'tetragonal', 'orthorhombic',
+          'monoclinic', 'hexagonal', 'triclinic' or 'rhombohedral'.
 
-        Returns
-        -------
-        dict
-            all point group operations
+    Returns:
+        dict: all point group operations
 
-        Notes
-        -----
-        reference: ITA p.14 Table 1.2.2.1 and 1.2.2.2
+    Raises:
+        ValueError: unexpected coodinate system is specifed
 
-        Raises
-        ------
-        unexpected coodinate system is specifed
+    Examples:
+        description
+
+        >>> print_test ("test", "message")
+          test message
+
+    Note:
+        description
     """
     def __add_dict(symbol,
                    geometric_element,

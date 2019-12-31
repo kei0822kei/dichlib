@@ -180,14 +180,32 @@
 <dt id="dichlib.operations.point_group_operatons.get_all_pog_operations">
 <code class="sig-prename descclassname">dichlib.operations.point_group_operatons.</code><code class="sig-name descname">get_all_pog_operations</code><span class="sig-paren">(</span><em class="sig-param">coord_sys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/point_group_operatons.html#get_all_pog_operations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.point_group_operatons.get_all_pog_operations" title="Permalink to this definition">¶</a></dt>
 <dd><p>get all point group operations specified coordinate system</p>
-<blockquote>
-<div><dl class="simple">
-<dt>dict</dt><dd><p>all point group operations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>coord_sys</strong> (<em>str</em>) – Put coordinate system of lattice, which must be
+chosen from ‘cubic’, ‘tetragonal’, ‘orthorhombic’,
+‘monoclinic’, ‘hexagonal’, ‘triclinic’ or ‘rhombohedral’.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all point group operations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – unexpected coodinate system is specifed</p>
 </dd>
 </dl>
-<p>reference: ITA p.14 Table 1.2.2.1 and 1.2.2.2</p>
-<p>unexpected coodinate system is specifed</p>
-</div></blockquote>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
 </dd></dl>
 
 </div>
@@ -199,18 +217,33 @@
 <code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_Ww</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_Ww"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_Ww" title="Permalink to this definition">¶</a></dt>
 <dd><p>get 4 x 4 matrix Ww from the operation
 of rotation part W and translation part w</p>
-<blockquote>
-<div><dl class="simple">
-<dt>W<span class="classifier">numpy.array</span></dt><dd><p>rotation part (3 x 3) of space group operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
+<li><p><strong>w</strong> (<em>numpy array</em>) – translation part (3) of space group operation</p></li>
+</ul>
 </dd>
-<dt>w<span class="classifier">numpy.array</span></dt><dd><p>translation part (3) of space group operation</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>concatted space group operaton (4 x 4)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – description</p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>Ww<span class="classifier">numpy.array</span></dt><dd><p>concatted space group operaton (4 x 4)</p>
-</dd>
-</dl>
-</div></blockquote>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -218,22 +251,33 @@ of rotation part W and translation part w</p>
 <code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_detailed_spg_operation</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_detailed_spg_operation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_detailed_spg_operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>get detailed space group operation information
 such as intrinsic part of translation operation</p>
-<blockquote>
-<div><dl class="simple">
-<dt>W<span class="classifier">numpy.array</span></dt><dd><p>rotation part (3 x 3) of space group operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
+<li><p><strong>w</strong> (<em>numpy array</em>) – translation part (3) of space group operation</p></li>
+</ul>
 </dd>
-<dt>w<span class="classifier">numpy.array</span></dt><dd><p>translation part (3) of space group operation</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>description</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – could not detect index of the operation</p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>spg_operation<span class="classifier">dict</span></dt><dd><p>informations about a given space group operation</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>could not detect index of the operation</p>
-</dd>
-</dl>
-</div></blockquote>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
 </dd></dl>
 
 </div>

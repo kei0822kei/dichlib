@@ -20,6 +20,7 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 github:
-	@rm -r build
+	@sphinx-apidoc -f -o ../docs/source ..
+	@rm -fr build
 	@make html
 	@cp -a build/html/. ../docs

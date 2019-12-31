@@ -158,25 +158,30 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+
 <div class="viewcode-block" id="get_all_pog_operations"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.point_group_operatons.get_all_pog_operations">[docs]</a><span class="k">def</span> <span class="nf">get_all_pog_operations</span><span class="p">(</span><span class="n">coord_sys</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get all point group operations specified coordinate system</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
+<span class="sd">    Args:</span>
+<span class="sd">        coord_sys (str): Put coordinate system of lattice, which must be</span>
+<span class="sd">          chosen from &#39;cubic&#39;, &#39;tetragonal&#39;, &#39;orthorhombic&#39;,</span>
+<span class="sd">          &#39;monoclinic&#39;, &#39;hexagonal&#39;, &#39;triclinic&#39; or &#39;rhombohedral&#39;.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        dict</span>
-<span class="sd">            all point group operations</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: all point group operations</span>
 
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        reference: ITA p.14 Table 1.2.2.1 and 1.2.2.2</span>
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: unexpected coodinate system is specifed</span>
 
-<span class="sd">        Raises</span>
-<span class="sd">        ------</span>
-<span class="sd">        unexpected coodinate system is specifed</span>
+<span class="sd">    Examples:</span>
+<span class="sd">        description</span>
+
+<span class="sd">        &gt;&gt;&gt; print_test (&quot;test&quot;, &quot;message&quot;)</span>
+<span class="sd">          test message</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        description</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__add_dict</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span>
                    <span class="n">geometric_element</span><span class="p">,</span>

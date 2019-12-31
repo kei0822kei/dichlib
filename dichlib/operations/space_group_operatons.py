@@ -11,23 +11,24 @@ def get_Ww(W, w):
     get 4 x 4 matrix Ww from the operation
     of rotation part W and translation part w
 
-        Parameters
-        ----------
-        W : numpy.array
-            rotation part (3 x 3) of space group operation
-        w : numpy.array
-            translation part (3) of space group operation
+    Args:
+        W (3x3 numpy array): rotation part (3 x 3) of space group operation
+        w (numpy array): translation part (3) of space group operation
 
-        Returns
-        -------
-        Ww : numpy.array
-            concatted space group operaton (4 x 4)
+    Returns:
+        array: concatted space group operaton (4 x 4)
 
-        Notes
-        -----
+    Raises:
+        ValueError: description
 
-        Raises
-        ------
+    Examples:
+        description
+
+        >>> print_test ("test", "message")
+          test message
+
+    Note:
+        description
     """
     Ww = np.concatenate([W, w.reshape(3,1)], axis=1)
     Ww = np.concatenate([Ww, np.array([0,0,0,1]).reshape(1,4)], axis=0)
@@ -38,25 +39,24 @@ def get_detailed_spg_operation(W, w):
     get detailed space group operation information
     such as intrinsic part of translation operation
 
-        Parameters
-        ----------
-        W : numpy.array
-            rotation part (3 x 3) of space group operation
-        w : numpy.array
-            translation part (3) of space group operation
+    Args:
+        W (3x3 numpy array): rotation part (3 x 3) of space group operation
+        w (numpy array): translation part (3) of space group operation
 
-        Returns
-        -------
-        spg_operation : dict
-            informations about a given space group operation
+    Returns:
+        dict: description
 
-        Notes
-        -----
+    Raises:
+        ValueError: could not detect index of the operation
 
-        Raises
-        ------
-        ValueError
-            could not detect index of the operation
+    Examples:
+        description
+
+        >>> print_test ("test", "message")
+          test message
+
+    Note:
+        description
     """
     epsilon = 1e-8
     n_max = 20
