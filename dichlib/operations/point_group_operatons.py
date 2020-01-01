@@ -29,7 +29,11 @@ def get_all_pog_operations(coord_sys):
           test message
 
     Note:
-        description
+        In this definition, point group operation number (pognum) is
+        defined. Each number is determined in order of Table 1.2.2.1 and
+        Tabke 1.2.2.2 in International Table Vol.A. Some of the operations
+        in hexagonal system correspond with the ones in the operations of the
+        other crystal systems.
     """
     def __add_dict(pognum,
                    symbol,
