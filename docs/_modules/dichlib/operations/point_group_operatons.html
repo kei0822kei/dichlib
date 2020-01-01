@@ -181,14 +181,19 @@
 <span class="sd">          test message</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        description</span>
+<span class="sd">        In this definition, point group operation number (pognum) is</span>
+<span class="sd">        defined. Each number is determined in order of Table 1.2.2.1 and</span>
+<span class="sd">        Tabke 1.2.2.2 in International Table Vol.A. Some of the operations</span>
+<span class="sd">        in hexagonal system correspond with the ones in the operations of the</span>
+<span class="sd">        other crystal systems.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__add_dict</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__add_dict</span><span class="p">(</span><span class="n">pognum</span><span class="p">,</span>
+                   <span class="n">symbol</span><span class="p">,</span>
                    <span class="n">geometric_element</span><span class="p">,</span>
                    <span class="n">direction</span><span class="p">,</span>
                    <span class="n">transformed_coord</span><span class="p">,</span>
                    <span class="n">matrix</span><span class="p">):</span>
-        <span class="n">pog_operations</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">pog_operations</span><span class="p">[</span><span class="n">pognum</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="n">symbol</span><span class="p">,</span>
                 <span class="s1">&#39;geometric_element&#39;</span><span class="p">:</span> <span class="n">geometric_element</span><span class="p">,</span>
                 <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
@@ -206,23 +211,730 @@
     <span class="n">pog_operations</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">coord_sys</span> <span class="ow">in</span> <span class="n">except_hexagol</span><span class="p">:</span>
         <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
                 <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
                 <span class="n">geometric_element</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="n">direction</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;xyz&#39;</span><span class="p">,</span>
-                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
             <span class="p">)</span>
         <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
                 <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3+&#39;</span><span class="p">,</span>
-                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;xxx&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,x&#39;</span><span class="p">,</span>
                 <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
-                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;zxy&#39;</span><span class="p">,</span>
-                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,x,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
             <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,z,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-1&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,-y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,-x,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,-z,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,-y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,-x,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,z,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,-x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;4+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;13&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;4-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,-x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;14&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,x,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;16&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,-z,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;17&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,-x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;18&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-4+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,-x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-4-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;21&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;22&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,-x,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;23&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,-z,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;24&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,-y,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,0,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,-y,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;26&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;4+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,y,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;27&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;4-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,y,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;28&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,-y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;29&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,x,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;30&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,x,-x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,z,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;31&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,y,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,y,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;32&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,y,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,y,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;33&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-4+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,-y,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;34&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-4-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,-y,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;35&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,-y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;36&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,-x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-z,x,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;37&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,-x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,-z,-x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;38&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,y&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,z,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;39&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,-y&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,-z,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;40&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;4+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,-z,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;41&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;4-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,z,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;42&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;43&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,-x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;z,-x,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;44&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;-x,-x,x&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,z,x&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;45&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,y,-y&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,-z,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;46&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,y,y&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,z,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;47&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-4+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,z,-y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;48&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-4-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,-z,y&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+            <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">coord_sys</span> <span class="o">==</span> <span class="s1">&#39;hexagonal&#39;</span><span class="p">:</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,-y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,-x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-1&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,-y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;14&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;17&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,-x,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,-x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;18&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,x,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;49&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,x-y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;50&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;6+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x-y,x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;51&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,0,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x-y,-y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;52&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,2x,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y-x,y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;53&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,y-x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;54&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-6+&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y-x,-x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;55&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x,2x,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y-x,y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;56&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;x0z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x-y,-y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;57&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y-x,-x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;58&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;6-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;y,y-x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;59&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,y-x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;60&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;2x,x,0&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,x-y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;61&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-3-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x-y,x,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;62&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;-6-&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,0,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-y,x-y,-z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;63&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;2x,x,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;x,x-y,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+        <span class="n">__add_dict</span><span class="p">(</span>
+                <span class="n">pognum</span> <span class="o">=</span> <span class="s1">&#39;64&#39;</span><span class="p">,</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                <span class="n">geometric_element</span> <span class="o">=</span> <span class="s1">&#39;0,y,z&#39;</span><span class="p">,</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">transformed_coord</span> <span class="o">=</span> <span class="s1">&#39;-x,y-x,z&#39;</span><span class="p">,</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+            <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unexpected coodinate system is specifed &quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">pog_operations</span></div>
 </pre></div>
