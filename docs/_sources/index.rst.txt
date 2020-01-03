@@ -6,6 +6,8 @@
 Welcome to dichlib's documentation!
 ===================================
 
+This software deals with dichromatic point and space group.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -14,11 +16,16 @@ Welcome to dichlib's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Test
+   :caption: Definitions
 
-   test/test1
-   test/test2
-   test/test3
+   definitions/space_group_operation
+   definitions/spg_def
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Modules
+
+   modules
 
 
 Indices and tables
