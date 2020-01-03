@@ -90,8 +90,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Space Group Operation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Space group operation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#space-group-operation-boldsymbol-w-boldsymbol-w">Space group operation <span class="math notranslate nohighlight">\((\boldsymbol{W}, \boldsymbol{w})\)</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#basis-vectors-mathbf-a-mathbf-b-mathbf-c-or-mathbf-a-1-mathbf-a-2-mathbf-a-3">Basis vectors <span class="math notranslate nohighlight">\((\mathbf{a}, \mathbf{b}, \mathbf{c})\)</span> or <span class="math notranslate nohighlight">\((\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3)\)</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#atomic-point-coordinates-boldsymbol-x">Atomic point coordinates <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#separating-boldsymbol-w-intr-and-boldsymbol-w-loc">Separating <span class="math notranslate nohighlight">\(\boldsymbol{w}_{intr}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{w}_{loc}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometric-element-of-space-group-operation">Geometric element of space group operation</a></li>
 </ul>
 </li>
 </ul>
@@ -173,8 +173,8 @@
 <li><p><a class="reference internal" href="#id1" id="id2">Space group operation</a></p>
 <ul>
 <li><p><a class="reference internal" href="#space-group-operation-boldsymbol-w-boldsymbol-w" id="id3">Space group operation <span class="math notranslate nohighlight">\((\boldsymbol{W}, \boldsymbol{w})\)</span></a></p></li>
-<li><p><a class="reference internal" href="#basis-vectors-mathbf-a-mathbf-b-mathbf-c-or-mathbf-a-1-mathbf-a-2-mathbf-a-3" id="id4">Basis vectors <span class="math notranslate nohighlight">\((\mathbf{a}, \mathbf{b}, \mathbf{c})\)</span> or <span class="math notranslate nohighlight">\((\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3)\)</span></a></p></li>
-<li><p><a class="reference internal" href="#atomic-point-coordinates-boldsymbol-x" id="id5">Atomic point coordinates <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></a></p></li>
+<li><p><a class="reference internal" href="#separating-boldsymbol-w-intr-and-boldsymbol-w-loc" id="id4">Separating <span class="math notranslate nohighlight">\(\boldsymbol{w}_{intr}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{w}_{loc}\)</span></a></p></li>
+<li><p><a class="reference internal" href="#geometric-element-of-space-group-operation" id="id5">Geometric element of space group operation</a></p></li>
 </ul>
 </li>
 </ul>
@@ -191,31 +191,28 @@ dichlib document. The symmetry operation transfers <span class="math notranslate
 <div class="math notranslate nohighlight" id="equation-space-group-operation">
 <span class="eqno">(1)<a class="headerlink" href="#equation-space-group-operation" title="Permalink to this equation">¶</a></span>\[\tilde{\boldsymbol{x}} = \boldsymbol{W}\boldsymbol{x} + \boldsymbol{w}.\]</div>
 </div>
-<div class="section" id="basis-vectors-mathbf-a-mathbf-b-mathbf-c-or-mathbf-a-1-mathbf-a-2-mathbf-a-3">
-<h3><a class="toc-backref" href="#id4">Basis vectors <span class="math notranslate nohighlight">\((\mathbf{a}, \mathbf{b}, \mathbf{c})\)</span> or <span class="math notranslate nohighlight">\((\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3)\)</span></a><a class="headerlink" href="#basis-vectors-mathbf-a-mathbf-b-mathbf-c-or-mathbf-a-1-mathbf-a-2-mathbf-a-3" title="Permalink to this headline">¶</a></h3>
-<p>In spglib, basis vectors are represented by three column vectors:</p>
-<div class="math notranslate nohighlight" id="equation-basis-vectors">
-<span class="eqno">(2)<a class="headerlink" href="#equation-basis-vectors" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathbf{a}= \begin{pmatrix}
-a_x \\
-a_y \\
-a_z \\
-\end{pmatrix},
-\mathbf{b}= \begin{pmatrix}
-b_x \\
-b_y \\
-b_z \\
-\end{pmatrix},
-\mathbf{c}= \begin{pmatrix}
-c_x \\
-c_y \\
-c_z \\
-\end{pmatrix},\end{split}\]</div>
-<p>in Cartesian coordinates. Depending on the situation,
-<span class="math notranslate nohighlight">\((\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3)\)</span> is used instead of
-<span class="math notranslate nohighlight">\((\mathbf{a}, \mathbf{b}, \mathbf{c})\)</span>.</p>
+<div class="section" id="separating-boldsymbol-w-intr-and-boldsymbol-w-loc">
+<h3><a class="toc-backref" href="#id4">Separating <span class="math notranslate nohighlight">\(\boldsymbol{w}_{intr}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{w}_{loc}\)</span></a><a class="headerlink" href="#separating-boldsymbol-w-intr-and-boldsymbol-w-loc" title="Permalink to this headline">¶</a></h3>
+<p>Translation part of space group operation <span class="math notranslate nohighlight">\(\boldsymbol{w})\)</span> can be
+separate its intrinsic part and location part as follows:</p>
+<div class="math notranslate nohighlight" id="equation-separating-translation-part">
+<span class="eqno">(2)<a class="headerlink" href="#equation-separating-translation-part" title="Permalink to this equation">¶</a></span>\[\boldsymbol{w} = \boldsymbol{w}_{intr} + \boldsymbol{w}_{loc}\]</div>
+<p>In order to determine the intrinsic part <span class="math notranslate nohighlight">\(\boldsymbol{w}_{intr}\)</span>,
+the index <span class="math notranslate nohighlight">\(k\)</span> of the space group operation <span class="math notranslate nohighlight">\((\boldsymbol{W}, \boldsymbol{w})\)</span>
+is determined. <span class="math notranslate nohighlight">\(k\)</span> is defined as the minumum positive integer which fullfil
+the next equation:</p>
+<div class="math notranslate nohighlight">
+\[(\boldsymbol{W}, \boldsymbol{w})^k = (\boldsymbol{I}, \boldsymbol{t}).\]</div>
+<p>Then, <span class="math notranslate nohighlight">\(\boldsymbol{w}_{intr}\)</span> is determined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{w}_{intr} = \boldsymbol{t} / k\]</div>
 </div>
-<div class="section" id="atomic-point-coordinates-boldsymbol-x">
-<h3><a class="toc-backref" href="#id5">Atomic point coordinates <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></a><a class="headerlink" href="#atomic-point-coordinates-boldsymbol-x" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="geometric-element-of-space-group-operation">
+<h3><a class="toc-backref" href="#id5">Geometric element of space group operation</a><a class="headerlink" href="#geometric-element-of-space-group-operation" title="Permalink to this headline">¶</a></h3>
+<p>Geometric element of the space group operation <span class="math notranslate nohighlight">\(\boldsymbol{x}_{ele}\)</span>
+is determined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{W}\boldsymbol{x}_{ele} + \boldsymbol{w}_{loc} = \boldsymbol{x}_{ele}\]</div>
 </div>
 </div>
 </div>
