@@ -7,6 +7,42 @@ This file provides various kind of calculations about point group oprations.
 import numpy as np
 
 
+def get_operation_detail(W, coord_sys):
+    """
+    get detailed operation information from input operation
+
+    Args:
+        W (3x3 numpy array): rotation part (3 x 3) of space group operation
+        coord_sys (str): Put coordinate system of lattice, which must be
+          chosen from 'cubic', 'tetragonal', 'orthorhombic',
+          'monoclinic', 'hexagonal', 'triclinic' or 'rhombohedral'.
+
+    Returns:
+        dict: point group operation detail
+
+    Raises:
+        ValueError: input array is not correspond with ary point group
+          operation
+
+    Examples:
+
+    Note:
+    """
+    flag = 1
+    all_pog_operations = get_all_pog_operations(coord_sys)
+    for key in all_pog_operations.keys():
+        if (W == all_pog_operations[key]['matrix']).all():
+            operaion_detail = all_pog_operations[key]
+            flag = 0
+            break
+
+    if flag == 1:
+        raise ValueError("input array is not correspond with ary point "
+                "group operation")
+
+    return operaion_detail
+
+
 def get_all_pog_operations(coord_sys):
     """
     get all point group operations specified coordinate system
@@ -29,7 +65,11 @@ def get_all_pog_operations(coord_sys):
           test message
 
     Note:
-        description
+        In this definition, point group operation number (pognum) is
+        defined. Each number is determined in order of Table 1.2.2.1 and
+        Tabke 1.2.2.2 in International Table Vol.A. Some of the operations
+        in hexagonal system correspond with the ones in the operations of the
+        other crystal systems.
     """
     def __add_dict(pognum,
                    symbol,

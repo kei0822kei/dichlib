@@ -163,6 +163,42 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
+<div class="viewcode-block" id="get_operation_detail"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.point_group_operatons.get_operation_detail">[docs]</a><span class="k">def</span> <span class="nf">get_operation_detail</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">coord_sys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    get detailed operation information from input operation</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        W (3x3 numpy array): rotation part (3 x 3) of space group operation</span>
+<span class="sd">        coord_sys (str): Put coordinate system of lattice, which must be</span>
+<span class="sd">          chosen from &#39;cubic&#39;, &#39;tetragonal&#39;, &#39;orthorhombic&#39;,</span>
+<span class="sd">          &#39;monoclinic&#39;, &#39;hexagonal&#39;, &#39;triclinic&#39; or &#39;rhombohedral&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: point group operation detail</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: input array is not correspond with ary point group</span>
+<span class="sd">          operation</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">all_pog_operations</span> <span class="o">=</span> <span class="n">get_all_pog_operations</span><span class="p">(</span><span class="n">coord_sys</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_pog_operations</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">==</span> <span class="n">all_pog_operations</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;matrix&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">operaion_detail</span> <span class="o">=</span> <span class="n">all_pog_operations</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">flag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;input array is not correspond with ary point &quot;</span>
+                <span class="s2">&quot;group operation&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">operaion_detail</span></div>
+
+
 <div class="viewcode-block" id="get_all_pog_operations"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.point_group_operatons.get_all_pog_operations">[docs]</a><span class="k">def</span> <span class="nf">get_all_pog_operations</span><span class="p">(</span><span class="n">coord_sys</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get all point group operations specified coordinate system</span>
@@ -185,7 +221,11 @@
 <span class="sd">          test message</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        description</span>
+<span class="sd">        In this definition, point group operation number (pognum) is</span>
+<span class="sd">        defined. Each number is determined in order of Table 1.2.2.1 and</span>
+<span class="sd">        Tabke 1.2.2.2 in International Table Vol.A. Some of the operations</span>
+<span class="sd">        in hexagonal system correspond with the ones in the operations of the</span>
+<span class="sd">        other crystal systems.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__add_dict</span><span class="p">(</span><span class="n">pognum</span><span class="p">,</span>
                    <span class="n">symbol</span><span class="p">,</span>

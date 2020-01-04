@@ -88,6 +88,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dichlib.operations.html">dichlib.operations package</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dichlib.convenient_tool">dichlib.convenient_tool module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dichlib">Module contents</a></li>
 </ul>
 </li>
@@ -105,6 +107,8 @@
 <li class="toctree-l4"><a class="reference internal" href="dichlib.operations.html">dichlib.operations package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dichlib.convenient_tool">dichlib.convenient_tool module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-dichlib">Module contents</a></li>
 </ul>
 </li>
@@ -189,6 +193,84 @@
 </li>
 </ul>
 </div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dichlib.convenient_tool">
+<span id="dichlib-convenient-tool-module"></span><h2>dichlib.convenient_tool module<a class="headerlink" href="#module-dichlib.convenient_tool" title="Permalink to this headline">¶</a></h2>
+<p>This file provides various convenient mathematical tools.</p>
+<dl class="function">
+<dt id="dichlib.convenient_tool.check_equal">
+<code class="sig-prename descclassname">dichlib.convenient_tool.</code><code class="sig-name descname">check_equal</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">accuracy=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/convenient_tool.html#check_equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.convenient_tool.check_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>check whether x and y is equal or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – x value</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – y value</p></li>
+<li><p><strong>accuracy</strong> (<em>int</em>) – threshold of whether two values are the same of not
+In the case of ‘accuracy=3’, check the third decimal place.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If True, x and y are the same.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – description</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="dichlib.convenient_tool.float2frac">
+<code class="sig-prename descclassname">dichlib.convenient_tool.</code><code class="sig-name descname">float2frac</code><span class="sig-paren">(</span><em class="sig-param">var</em>, <em class="sig-param">accuracy=3</em>, <em class="sig-param">denominator=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/convenient_tool.html#float2frac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.convenient_tool.float2frac" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform float to fractional (str object)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var</strong> (<em>float</em>) – input value</p></li>
+<li><p><strong>accuracy</strong> (<em>int</em>) – threshold of whether two values are the same of not
+In the case of ‘accuracy=3’, check the third decimal place.</p></li>
+<li><p><strong>denominator</strong> (<em>int</em>) – if ‘denominator=10’,
+check from 1/2 to 12/13</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>description</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong><strong>(</strong><strong>&quot;could not find fractional representation of input 'var'</strong><strong>)</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">float2frac</span><span class="p">(</span><span class="o">-</span><span class="mf">1.333333</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">  &#39;-4/3&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
+</dd></dl>
+
 </div>
 <div class="section" id="module-dichlib">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dichlib" title="Permalink to this headline">¶</a></h2>

@@ -8,6 +8,18 @@ Subpackages
 
    dichlib.operations
 
+Submodules
+----------
+
+dichlib.convenient\_tool module
+-------------------------------
+
+.. automodule:: dichlib.convenient_tool
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 Module contents
 ---------------
 

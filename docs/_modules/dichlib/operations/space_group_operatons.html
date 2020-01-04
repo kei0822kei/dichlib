@@ -161,6 +161,7 @@
 <span class="sd">This file provides various kind of calculations about space group oprations.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">dichlib.operations</span> <span class="kn">import</span> <span class="n">point_group_operatons</span>
 
 <div class="viewcode-block" id="get_Ww"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_Ww">[docs]</a><span class="k">def</span> <span class="nf">get_Ww</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -190,7 +191,138 @@
     <span class="n">Ww</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">Ww</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Ww</span></div>
 
-<div class="viewcode-block" id="get_detailed_spg_operation"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_detailed_spg_operation">[docs]</a><span class="k">def</span> <span class="nf">get_detailed_spg_operation</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+
+<div class="viewcode-block" id="get_index"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_index">[docs]</a><span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">get_translation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    get index of |(W, w)| (mod tau)</span>
+<span class="sd">    tau means translation operation</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        W (3x3 numpy array): rotation part (3 x 3) of space group operation</span>
+<span class="sd">        w (numpy array): translation part (3) of space group operation</span>
+<span class="sd">        get_translation (bool) (optional): If True, return translation</span>
+<span class="sd">          part when rotation part becomes identity matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: index of space group operation (W, w)</span>
+<span class="sd">        array: translation part when rotation part becomes identity matrix</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: could not detect index of the operation</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        description</span>
+
+<span class="sd">        &gt;&gt;&gt; print_test (&quot;test&quot;, &quot;message&quot;)</span>
+<span class="sd">          test message</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        description</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-8</span>
+    <span class="n">n_max</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">Ww_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">Ww</span> <span class="o">=</span> <span class="n">get_Ww</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Ww_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ww_n</span><span class="p">,</span> <span class="n">Ww</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Ww_n</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">n_max</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;could not detect index of the operation&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">get_translation</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">Ww_n</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span></div>
+
+
+<div class="viewcode-block" id="get_separated_translation_part"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_separated_translation_part">[docs]</a><span class="k">def</span> <span class="nf">get_separated_translation_part</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    get separated translation part from translation part w</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        W (3x3 numpy array): rotation part (3 x 3) of space group operation</span>
+<span class="sd">        w (numpy array): translation part (3) of space group operation</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (w_intr, w_loc)</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: description</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        description</span>
+
+<span class="sd">        &gt;&gt;&gt; print_test (&quot;test&quot;, &quot;message&quot;)</span>
+<span class="sd">          test message</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        description</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">index</span><span class="p">,</span> <span class="n">total_translation</span> <span class="o">=</span> <span class="n">get_index</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">get_translation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">w_intr</span> <span class="o">=</span> <span class="n">total_translation</span> <span class="o">/</span> <span class="n">index</span>
+    <span class="n">w_loc</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">w_intr</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">w_intr</span><span class="p">,</span> <span class="n">w_loc</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_geometric_element"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_geometric_element">[docs]</a><span class="k">def</span> <span class="nf">get_geometric_element</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    get geometric element of space group operation (W, w)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        W (3x3 numpy array): rotation part (3 x 3) of space group operation</span>
+<span class="sd">        w (numpy array): translation part (3) of space group operation</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: ()</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError(&quot;could not solve the equations&quot;)</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        description</span>
+
+<span class="sd">        &gt;&gt;&gt; print_test (&quot;test&quot;, &quot;message&quot;)</span>
+<span class="sd">          test message</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        solve the simultaneous equations as bellow:</span>
+<span class="sd">            (W - I)x_ele + w_loc = 0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_solve_equations</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w_loc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="n">equation1</span> <span class="o">=</span> <span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span>   <span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>  <span class="o">*</span><span class="n">y</span> <span class="o">+</span>   <span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>  <span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">w_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">equation2</span> <span class="o">=</span>   <span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>  <span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span>   <span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>  <span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">w_loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">equation3</span> <span class="o">=</span>   <span class="n">W</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>  <span class="o">*</span><span class="n">x</span> <span class="o">+</span>   <span class="n">W</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>  <span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">w_loc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">solved</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">([</span><span class="n">equation1</span><span class="p">,</span> <span class="n">equation2</span><span class="p">,</span> <span class="n">equation3</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">solved</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;could not solve the equations&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">solved</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">solved</span><span class="p">[</span><span class="n">var</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="kn">import</span> <span class="nn">sympy</span>
+    <span class="kn">from</span> <span class="nn">dichlib.convenient_tool</span> <span class="kn">import</span> <span class="n">float2frac</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+        <span class="n">w_loc</span> <span class="o">=</span> <span class="n">get_separated_translation_part</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">solved_vars</span> <span class="o">=</span> <span class="n">_solve_equations</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w_loc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+        <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">solved_vars</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">float2frac</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">strings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="n">strings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="n">strings</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_detailed_spg_operation"><a class="viewcode-back" href="../../../dichlib.operations.html#dichlib.operations.space_group_operatons.get_detailed_spg_operation">[docs]</a><span class="k">def</span> <span class="nf">get_detailed_spg_operation</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">coord_sys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get detailed space group operation information</span>
 <span class="sd">    such as intrinsic part of translation operation</span>
@@ -198,6 +330,8 @@
 <span class="sd">    Args:</span>
 <span class="sd">        W (3x3 numpy array): rotation part (3 x 3) of space group operation</span>
 <span class="sd">        w (numpy array): translation part (3) of space group operation</span>
+<span class="sd">        coord_sys (str) (optional): If you set coordinate system such as</span>
+<span class="sd">          &#39;monoclinic&#39;, &#39;W_detail&#39; key is added in the output dict.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: description</span>
@@ -214,25 +348,19 @@
 <span class="sd">    Note:</span>
 <span class="sd">        description</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-8</span>
-    <span class="n">n_max</span> <span class="o">=</span> <span class="mi">20</span>
-
-    <span class="n">Ww_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">Ww</span> <span class="o">=</span> <span class="n">get_Ww</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">Ww_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ww_n</span><span class="p">,</span> <span class="n">Ww</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Ww_n</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">):</span>
-            <span class="k">break</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">n_max</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;could not detect index of the operation&quot;</span><span class="p">)</span>
-    <span class="n">w_intr</span> <span class="o">=</span> <span class="n">Ww</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">w_sep</span> <span class="o">=</span> <span class="n">get_separated_translation_part</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
     <span class="n">spg_operation</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="n">W</span><span class="p">,</span>
         <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="n">w</span><span class="p">,</span>
-        <span class="s1">&#39;w_intr&#39;</span><span class="p">:</span> <span class="n">w_intr</span><span class="p">,</span>
-        <span class="s1">&#39;w_loc&#39;</span><span class="p">:</span> <span class="n">w</span> <span class="o">-</span> <span class="n">w_intr</span><span class="p">,</span>
-        <span class="s1">&#39;W_index&#39;</span><span class="p">:</span> <span class="n">n</span>
+        <span class="s1">&#39;w_intr&#39;</span><span class="p">:</span> <span class="n">w_sep</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;w_loc&#39;</span><span class="p">:</span> <span class="n">w_sep</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;W_index&#39;</span><span class="p">:</span> <span class="n">get_index</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span>
+        <span class="s1">&#39;geometric_element&#39;</span><span class="p">:</span> <span class="n">get_geometric_element</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
     <span class="p">}</span>
+    <span class="k">if</span> <span class="n">coord_sys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">spg_operation</span><span class="p">[</span><span class="s1">&#39;W_detail&#39;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="n">point_group_operatons</span><span class="o">.</span><span class="n">get_operation_detail</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">coord_sys</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">spg_operation</span></div>
 </pre></div>
 

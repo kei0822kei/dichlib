@@ -94,6 +94,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="dichlib.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dichlib.html#module-dichlib.convenient_tool">dichlib.convenient_tool module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dichlib.html#module-dichlib">Module contents</a></li>
 </ul>
 </li>
@@ -111,6 +113,8 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">dichlib.operations package</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="dichlib.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dichlib.html#module-dichlib.convenient_tool">dichlib.convenient_tool module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dichlib.html#module-dichlib">Module contents</a></li>
 </ul>
 </li>
@@ -218,8 +222,40 @@ chosen from ‘cubic’, ‘tetragonal’, ‘orthorhombic’,
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>description</p>
+<p>In this definition, point group operation number (pognum) is
+defined. Each number is determined in order of Table 1.2.2.1 and
+Tabke 1.2.2.2 in International Table Vol.A. Some of the operations
+in hexagonal system correspond with the ones in the operations of the
+other crystal systems.</p>
 </div>
+</dd></dl>
+
+<dl class="function">
+<dt id="dichlib.operations.point_group_operatons.get_operation_detail">
+<code class="sig-prename descclassname">dichlib.operations.point_group_operatons.</code><code class="sig-name descname">get_operation_detail</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">coord_sys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/point_group_operatons.html#get_operation_detail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.point_group_operatons.get_operation_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>get detailed operation information from input operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
+<li><p><strong>coord_sys</strong> (<em>str</em>) – Put coordinate system of lattice, which must be
+chosen from ‘cubic’, ‘tetragonal’, ‘orthorhombic’,
+‘monoclinic’, ‘hexagonal’, ‘triclinic’ or ‘rhombohedral’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>point group operation detail</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – input array is not correspond with ary point group
+    operation</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<p>Note:</p>
 </dd></dl>
 
 </div>
@@ -262,7 +298,7 @@ of rotation part W and translation part w</p>
 
 <dl class="function">
 <dt id="dichlib.operations.space_group_operatons.get_detailed_spg_operation">
-<code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_detailed_spg_operation</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_detailed_spg_operation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_detailed_spg_operation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_detailed_spg_operation</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em>, <em class="sig-param">coord_sys=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_detailed_spg_operation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_detailed_spg_operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>get detailed space group operation information
 such as intrinsic part of translation operation</p>
 <dl class="field-list simple">
@@ -270,6 +306,8 @@ such as intrinsic part of translation operation</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
 <li><p><strong>w</strong> (<em>numpy array</em>) – translation part (3) of space group operation</p></li>
+<li><p><strong>coord_sys</strong> (<em>str</em><em>) </em><em>(</em><em>optional</em>) – If you set coordinate system such as
+‘monoclinic’, ‘W_detail’ key is added in the output dict.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -280,6 +318,112 @@ such as intrinsic part of translation operation</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>ValueError</strong> – could not detect index of the operation</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="dichlib.operations.space_group_operatons.get_geometric_element">
+<code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_geometric_element</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_geometric_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_geometric_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>get geometric element of space group operation (W, w)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
+<li><p><strong>w</strong> (<em>numpy array</em>) – translation part (3) of space group operation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>()</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong><strong>(</strong><strong>&quot;could not solve the equations&quot;</strong><strong>)</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>solve the simultaneous equations as bellow:</dt><dd><p>(W - I)x_ele + w_loc = 0</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="dichlib.operations.space_group_operatons.get_index">
+<code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_index</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em>, <em class="sig-param">get_translation=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>get index of <a href="#id1"><span class="problematic" id="id2">|(W, w)|</span></a> (mod tau)
+tau means translation operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
+<li><p><strong>w</strong> (<em>numpy array</em>) – translation part (3) of space group operation</p></li>
+<li><p><strong>get_translation</strong> (<em>bool</em><em>) </em><em>(</em><em>optional</em>) – If True, return translation
+part when rotation part becomes identity matrix.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>index of space group operation (W, w)
+array: translation part when rotation part becomes identity matrix</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – could not detect index of the operation</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>description</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_test</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+<span class="go">  test message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>description</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="dichlib.operations.space_group_operatons.get_separated_translation_part">
+<code class="sig-prename descclassname">dichlib.operations.space_group_operatons.</code><code class="sig-name descname">get_separated_translation_part</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dichlib/operations/space_group_operatons.html#get_separated_translation_part"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dichlib.operations.space_group_operatons.get_separated_translation_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>get separated translation part from translation part w</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<em>3x3 numpy array</em>) – rotation part (3 x 3) of space group operation</p></li>
+<li><p><strong>w</strong> (<em>numpy array</em>) – translation part (3) of space group operation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(w_intr, w_loc)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – description</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
