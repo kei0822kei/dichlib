@@ -108,6 +108,64 @@ def get_separated_translation_part(W, w):
     return (w_intr, w_loc)
 
 
+def get_geometric_element(W, w):
+    """
+    get geometric element of space group operation (W, w)
+
+    Args:
+        W (3x3 numpy array): rotation part (3 x 3) of space group operation
+        w (numpy array): translation part (3) of space group operation
+
+    Returns:
+        dict: ()
+
+    Raises:
+        ValueError("could not solve the equations")
+
+    Examples:
+        description
+
+        >>> print_test ("test", "message")
+          test message
+
+    Note:
+        solve the simultaneous equations as bellow:
+            (W - I)x_ele + w_loc = 0
+    """
+    def _solve_equations(W, w_loc, x, y, z):
+        equation1 = (W[0,0]-1)*x +   W[0,1]  *y +   W[0,2]  *z + w_loc[0]
+        equation2 =   W[1,0]  *x + (W[1,1]-1)*y +   W[1,2]  *z + w_loc[1]
+        equation3 =   W[2,0]  *x +   W[2,1]  *y + (W[2,2]-1)*z + w_loc[2]
+        solved = sympy.solve([equation1, equation2, equation3])
+        if len(solved) == 0:
+            raise ValueError("could not solve the equations")
+        results = []
+        for var in [x, y, z]:
+            if var in solved.keys():
+                results.append(float(solved[var]))
+            else:
+                results.append(None)
+        return results
+
+    import sympy
+    from dichlib.convenient_tool import float2frac
+    if (W == np.eye(3)).all():
+        return None
+    else:
+        x = sympy.Symbol('x')
+        y = sympy.Symbol('y')
+        z = sympy.Symbol('z')
+        w_loc = get_separated_translation_part(W, w)[1]
+        solved_vars = _solve_equations(W, w_loc, x, y, z)
+        strings = []
+        for var, name in zip(solved_vars, ['x', 'y', 'z']):
+            if var is None:
+                strings.append(name)
+            else:
+                strings.append(float2frac(var))
+        return strings[0]+','+strings[1]+','+strings[2]
+
+
 def get_detailed_spg_operation(W, w, coord_sys=None):
     """
     get detailed space group operation information
@@ -140,7 +198,8 @@ def get_detailed_spg_operation(W, w, coord_sys=None):
         'w': w,
         'w_intr': w_sep[0],
         'w_loc': w_sep[1],
-        'W_index': get_index(W, w)
+        'W_index': get_index(W, w),
+        'geometric_element': get_geometric_element(W, w)
     }
     if coord_sys is not None:
         spg_operation['W_detail'] = \
