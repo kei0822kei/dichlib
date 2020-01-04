@@ -100,7 +100,9 @@ def get_separated_translation_part(W, w):
           test message
 
     Note:
-        description
+        In the case of the space group operaton t(1/2, 1/2, 0),
+        w_intr and w_loc become [1/2, 1/2, 0] and [0, 0, 0]
+        t(1/2, 1/2, 0) multiply t(1/2, 1/2, 0) become [1, 1, 0] not [0, 0, 0]
     """
     index, total_translation = get_index(W, w, get_translation=True)
     w_intr = total_translation / index
