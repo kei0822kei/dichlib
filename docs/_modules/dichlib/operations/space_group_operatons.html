@@ -256,7 +256,9 @@
 <span class="sd">          test message</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        description</span>
+<span class="sd">        In the case of the space group operaton t(1/2, 1/2, 0),</span>
+<span class="sd">        w_intr and w_loc become [1/2, 1/2, 0] and [0, 0, 0]</span>
+<span class="sd">        t(1/2, 1/2, 0) multiply t(1/2, 1/2, 0) become [1, 1, 0] not [0, 0, 0]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">index</span><span class="p">,</span> <span class="n">total_translation</span> <span class="o">=</span> <span class="n">get_index</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">get_translation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">w_intr</span> <span class="o">=</span> <span class="n">total_translation</span> <span class="o">/</span> <span class="n">index</span>
